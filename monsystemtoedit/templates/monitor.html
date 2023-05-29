@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Диспечер</title>
+    {#Импортируйте стили CSS и динамику JS, которые Bootstrap помог нам настроить  #}
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+
+{% include 'nav.html' %}
+
+<h1>Задачи</h1>
+{#Имена классов для установки тега table - table и table-striped. Фактически, для установки стиля таблицы используется CSS-стиль, написанный Bootstrap.#}
+<table class="table table-bordered table-dark">
+    <tr>
+        <td>Имя программы</td>
+        <td>CPU</td>
+       <!-- <td>Память</td>
+        <td>Время запуска</td>-->
+
+        {#   Шаблон интерфейса，， Использование переменных{{ Имя переменной }}  Узнай, что есть в словареkeyсоответствующийvalueстоить: {{ info.keyname }}    #}
+        {% for proces in processes %}
+        <tr>
+        <td scope="col">{{proces.name}}</td>
+        <td scope="col">{{proces.cpu_usage}}</td>
+       <!-- <td scope="col">{{proces.memory_usage}}</td>
+        <td scope="col">{{proces.create_time}}</td>-->
+        <td scope="col"><button> Удалить </button></a></td>
+
+        
+
+        </tr>
+
+
+        {% endfor %}
+
+    </tr>
+
+</table>
+
+</body>
+</html>

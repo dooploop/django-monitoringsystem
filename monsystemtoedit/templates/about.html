@@ -1,0 +1,51 @@
+<style>
+
+    body {
+              margin: 20px;
+              padding: 20px;
+            }
+        .container {
+            margin-top: 50px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        p {
+            font-size: 18px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+    </style>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Диспечер</title>
+        {#Импортируйте стили CSS и динамику JS, которые Bootstrap помог нам настроить  #}
+        <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+        <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+
+        {% include 'nav.html' %}
+        <div class="container">
+            <h1>Система мониторинга локальной сети</h1>
+            <p>Наша система мониторинга позволяет следить за состоянием всех устройств в вашей локальной сети. Вы сможете:</p>
+            <ul>
+                <li >Отслеживать доступность устройств в режиме реального времени</li>
+                <li>Получать уведомления о сбоях и проблемах в работе устройств</li>
+                <li>Анализировать статистику работы устройств</li>
+            </ul>
+            <p>Наша система мониторинга легко настраивается и проста в использовании. Мы предоставляем детальную документацию и техническую поддержку для всех наших пользователей.</p>
+
+            <p>Данная программа создана в качестве дипломной работы студентом кафедры МКМ НИУ МЭИ</p>
+        </div>
+
+
+        {% include 'footer.html' %}   
+</body>
+</html>
+
+

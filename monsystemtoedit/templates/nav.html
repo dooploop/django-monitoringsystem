@@ -1,0 +1,42 @@
+
+<nav class="navbar navbar-light bg-light" role="navigation">
+    <div class="container-fluid">
+        <div>
+            
+       
+            <ul class="nav navbar-nav">
+                <li><a class="navbar-brand" id="logo" href="/">Система мониторинга ПК</a></li>
+                <li><a href="/disk/">Мониторинг разделов диска</a></li>
+                <li><a href="/users_list/">Пользователи</a></li>
+                <li><a href="/diff/">Сравнение конфиг файлов</a></li>
+                <!--<li><a href="/monitor/">Диспечер</a></li>-->
+                <li><a href="/about/">О программе</a></li>
+              <!--  <li><a href="/auth/">Авторизация</a></li>-->
+   
+                <li><a href="{% url 'logout' %}">Выйти</a></li>
+    
+
+
+
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+
+<style>
+    body{
+        background-color: #f9f9f9;
+    }
+    #logo{
+        border-left: 3px solid rgb(100, 148, 231);
+    }
+
+    a:hover{
+        background-color: rgba(35, 176, 247, 0.932)
+    }
+</style>
+
+

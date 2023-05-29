@@ -1,0 +1,110 @@
+{% if user.is_authenticated %}
+<style>
+
+body {
+          margin: 20px;
+          padding: 20px;
+        }
+
+        .form-control.w-30 {
+        width: 20%;
+        margin-bottom: 10px;
+        }
+
+    .pricelist tr  { 
+    background-color: rgba(122, 195, 245, 0.179); }
+    table tr:hover {
+            margin: 5px;
+             background-color: rgb(100, 148, 231); 
+  
+      
+  }
+
+  table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th {
+  background-color: #0077cc;
+  color: #fff;
+  font-weight: bold;
+  padding: 8px;
+  text-align: left;
+}
+
+/* Оформление строк таблицы */
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+td {
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+
+/* Оформление ячеек таблицы */
+.task-name {
+  font-weight: bold;
+}
+
+.task-priority {
+  color: #ff0000;
+}
+
+.task-status {
+  color: #0077cc;
+}
+
+.task-deadline {
+  font-style: italic;
+}
+
+
+
+</style>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Информация о мониторинге диска</title>
+    {#Импортируйте стили CSS и динамику JS, которые Bootstrap помог нам настроить  #}
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+{% include 'nav.html' %}
+
+{#Имена классов для установки тега table - table и table-striped. Фактически, для установки стиля таблицы используется CSS-стиль, написанный Bootstrap.#}
+<table class="table caption-top">
+    <caption>Мониторинг информации на дисках сервера</caption>
+    <tr>
+        <td>Имя раздела</td>
+        <td>Точка монтирования</td>
+        <td>Тип файловой системы</td>
+        <td>Свойства монтирования</td>
+        <td>Общая емкость диска</td>
+        <td>Процент использования диска (единица измерения: %)</td>
+    </tr>
+
+    {% for disk in disks %}
+        <tr>
+            <td>{{ disk.device }}</td>
+            <td>{{ disk.mountpoint }}</td>
+            <td>{{ disk.fstype }}</td>
+            <td>{{ disk.opts }}</td>
+            <td>{{ disk.total }}</td>
+            <td>{{ disk.percent }}</td>
+        </tr>
+    {% endfor %}
+
+
+</table>
+
+{% include 'footer.html' %}
+</body>
+</html>
+{% endif %}

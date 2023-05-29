@@ -1,0 +1,80 @@
+
+<style>
+  /* Стилизация формы */
+  body{
+    padding: 50% auto;
+    margin-top: 10%;
+  }
+  form {
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Стилизация заголовка формы */
+  h2 {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #333;
+  }
+
+  /* Стилизация полей ввода */
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+    color: #666;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #f5f5f5;
+    color: #333;
+  }
+
+  /* Стилизация кнопки отправки формы */
+  button[type="submit"] {
+    display: block;
+    margin: 0 auto;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    border-radius: 5px;
+    border: none;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  button[type="submit"]:hover {
+    background-color: #3e8e41;
+  }
+</style>
+
+
+{% block content %}
+<form method="post">
+  <div class="form-group row">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Войти</button>
+
+</div>
+</form>
+{% endblock %}
+
+
+
+

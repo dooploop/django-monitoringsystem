@@ -1,0 +1,66 @@
+<script>
+    $(document).ready(function() {
+  $('#hide-footer-btn').click(function() {
+    $('footer').fadeOut();
+  });
+})
+</script>
+<footer>
+      
+
+    <div class="container">
+        
+      <div class="row">
+        <button id="hide-footer-btn" class="btn btn-primary" style="position: absolute; bottom: 100%; left: 68%; transform: translateX(-50%); background-color: transparent;">
+            <i class="fa fa-arrow-down" aria-hidden="true" style="color: rgb(16, 16, 16);">&#10060;</i>
+          </button>
+          
+        <div class="col-md-6">
+          <h4>Связаться с нами</h4>
+          <ul class="contact-info">
+            <li><i class="fa fa-map-marker"></i> Адрес: <span>Красноказарменная ул., 17, стр. 3, Москва. Московский энергетический институт</span></li>
+            <li><i class="fa fa-phone"></i> Телефон: <span>+ 7 (495) 362-75-60.</span></li>
+            <li><i class="fa fa-envelope"></i> E-mail: <span>info@monitoring.ru</span></li>
+          </ul>
+        </div>
+        <div class="col-md-3">
+          <h4>Подписаться на рассылку</h4>
+          <form class="newsletter-form">
+            <div class="form-group">
+              <input type="email" class="form-control" placeholder="Введите ваш e-mail">
+              <button type="submit" class="btn btn-primary">Подписаться</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+<style>
+button[type="submit"] {
+    background-color: #4CAF50;
+    border: 0;
+    margin-top: 5px;
+  }
+  button[type="submit"]:hover {
+    background-color: #3e8e41;
+    border: 1px #97f695;
+  }
+ footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #f9f9f9;
+    padding: 3px 0 3px 0;
+  }
+
+  #hide-footer-btn {
+  border: none;
+}
+#hide-footer-btn:hover {
+  border: none;
+  background-color: #4CAF50;
+}
+
+</style>
+ 

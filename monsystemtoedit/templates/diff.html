@@ -1,0 +1,62 @@
+<style>
+
+    body {
+              margin: 20px;
+              padding: 20px;
+            }
+        .container {
+            margin-top: 50px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        p {
+            font-size: 18px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+    </style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Сравнение различий в файлах конфигурации</title>
+    {#  Импортируйте стили CSS и динамику JS, которые Bootstrap помог нам настроить#}
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+{% include 'nav.html' %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-3">
+            <h1>Сравнение различий в файлах конфигурации</h1>
+            {#Информация, которую необходимо указать в форме: 1). Способ отправки метод=сообщение 2). Какой маршрут отправить на обработку? Соответствующая функция просмотра /diff/ является функцией diff#}
+            {#При загрузке файлов в форму формы обязательно настройте ее enctype="multipart/form-data"         #}
+           
+            <form role="form" action="/diff/" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="inputfile">Первый конфигурационный файл:</label>
+                    <input type="file" id="inputfile" name="filename1">
+                </div>
+                <div class="form-group">
+                    <label for="inputfile">Второй конфигурационный файл:</label>
+                    <input type="file" id="inputfile" name="filename2">
+                </div>
+                <button type="submit" class="btn btn-success">Загрузить файл</button>
+            </form>
+            {#<form action="#">#}
+            {#    Первый конфигурационный файл: <input type="file" name="filename1"><br/>#}
+            {#    Второй конфигурационный файл: <input type="file" name="filename2"><br/>#}
+            {#    <input type="submit" value="загружать">#}
+            {#</form>#}
+        </div>
+    </div>
+</div>
+
+{% include 'footer.html' %}
+</body>
+</html>

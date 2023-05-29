@@ -1,0 +1,282 @@
+{% if user.is_authenticated %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <style>
+        body {
+          margin: 20px;
+          padding: 20px;
+        }
+
+        .form-control.w-30 {
+        width: 20%;
+        margin-bottom: 10px;
+        }
+    
+
+      .pricelist tr td:nth-child(2),table tr td:nth-child(3),table tr td:nth-child(4),table tr td:nth-child(5),table tr td:nth-child(6) { 
+    background-color: rgba(122, 195, 245, 0.179); }
+    table tr:hover {
+            margin: 5px;
+             background-color: rgba(250, 245, 173, 0.932); /* изменить цвет фона строки на серый при наведении на нее курсора */
+  
+      
+
+  }
+
+  table {
+  border-collapse: collapse;
+  width: 100%;
+
+}
+
+th {
+  background-color: #aeddff;
+  color: rgb(38, 36, 36);
+  font-weight: bold;
+  padding: 8px;
+  font-style: italic;
+  text-align: left;
+}
+
+/* Оформление строк таблицы */
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+td {
+  padding: 8px;
+  border: 1px solid #ddd;
+  font-style: italic;
+}
+
+/* Оформление ячеек таблицы */
+.task-name {
+  font-weight: bold;
+}
+
+.task-priority {
+  color: #f58383f4;
+}
+
+.task-status {
+  color: #b6defb;
+}
+
+.task-deadline {
+  font-style: italic;
+}
+
+
+
+
+    table.fixed { table-layout:fixed; }
+    table.fixed td { overflow: hidden; }
+    .total .total_memory {
+            padding: 10px;
+            width: 100px;
+            height: 50px;
+            }
+
+
+            #new-table {
+  width: 40%; /* Занимает половину экрана */
+  
+  border-collapse: collapse; /* Сводит границы таблицы в одну линию */
+}
+
+#new-table th, #new-table td {
+  padding: 7px; /* Отступ внутри ячеек таблицы */
+  border: 1px solid #ccc; /* Границы ячеек таблицы */
+  text-align: center; /* Выравнивание текста по центру */
+
+  padding: 8px;
+  line-height: 1.42857143;
+  vertical-align: top;
+  border-top: 1px solid #ddd;
+}
+
+#new-table th {
+  background-color: #fff; /* Цвет фона заголовков таблицы */
+}
+
+ #name{
+  width: 20%;
+}
+      </style>
+<head>
+    <meta charset="UTF-8">
+    <title>Домашняя страница: Приложение для просмотра информации о сервере</title>
+    {#Импортируйте стили CSS и динамику JS, которые Bootstrap помог нам настроить  #}
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+
+{% include 'nav.html' %}
+
+<form id="form-group">
+  <div class="form-row align-items-left">
+  <input class="form-control" type="text" name="name" id="name" placeholder="Имя агента">
+</div>
+</form>
+<table class="table-half" id="new-table">
+  <caption>Общие сведения</caption>
+    <tr>
+      <th>Пользователь</th>
+        <th>ЦП</th>
+        <th>Память</th>
+    </tr>
+</table>
+
+  
+    <table class="table table-bordered table-dark" id="pricelist">
+      <caption>Список активных программ</caption>
+      <thead>
+        <tr>
+          <th scope="col">Время</th>
+          <th scope="col">Пользователь</th>
+          <th scope="col">Название</th>
+          <th scope="col">ЦП</th>
+          <th scope="col">Память</th>
+          <!--<th scope="col">ID</th>
+          <th scope="col">Поток</th>
+          <th scope="col">Cтатус</th>-->
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+ 
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+     function fetchData() {
+      var nameValue = $("#name").val();
+
+    $.ajax({
+      url: "http://127.0.0.1:8000/programs/",
+      data: { name: nameValue },
+      success: function(data) {
+        var tableBody = $("<tbody>");
+        var sumCPU = 0;
+        var sumMemory = 0;
+        $.each(data, function(index, element) {
+          var row = $("<tr>");
+          row.append($("<td>").text(element.data));
+          row.append($("<td>").text(element.name));
+          row.append($("<td>").text(element.program_name));
+          row.append($("<td>").text(element.cpu_usage));
+          row.append($("<td>").text(element.memory_usage));
+          //row.append($("<td>").text(element.program_id));
+          //row.append($("<td>").text(element.banch_id));
+          //row.append($("<td>").text(element.status));
+
+          // Add the cpu_usage value to the sum
+         // sumCPU += parseFloat(element.cpu_usage);
+          //sumMemory += parseFloat(element.memory_usage);
+
+
+          tableBody.append(row);
+        });
+
+        // Update the sum of the cpu_usage column in the summary table
+       // $("#total1").text(sumCPU.toFixed(2));
+        //$("#total2").text(sumMemory.toFixed(2));
+
+
+        // Remove the old table body and replace it with the new one
+        $("#pricelist tbody").remove();
+       $("#pricelist").append(tableBody);
+
+      //var totalCpu = $("#total1");
+   // var totalMemory = $("#total2");
+   // if (sumCPU > 10) {
+   //   totalCpu.css("background-color", "#f16464e8");
+   // } else {
+     // totalCpu.css("background-color", "#e7f4fd");
+    //}
+    //if (sumMemory > 10) {
+      //totalMemory.css("background-color", "#f16464e8");
+    //} else {
+    //  totalMemory.css("background-color", "#e7f4fd");
+    //}
+  }
+    });
+  }
+
+  $(document).ready(function() {
+    fetchData();
+
+    // Fetch data every 5 seconds
+    setInterval(fetchData, 1000);
+  });
+
+  
+
+
+
+setInterval(updateTable, 1000);
+
+function updateTable() {
+    // получаем ссылку на исходную таблицу по её id
+    let oldTable = document.getElementById('pricelist');
+
+    // создаем объекты для хранения сумм значений для каждого из совпадающих значений name
+    let sumMap = new Map();
+    let countMap = new Map();
+
+    // проходим по всем строкам исходной таблицы, вычисляя сумму значений для каждого из совпадающих значений name
+    let rows = oldTable.querySelectorAll('tr');
+    for (let i = 1; i < rows.length; i++) {
+        let cols = rows[i].querySelectorAll('td');
+        let name = cols[1].textContent;
+        let sum = parseFloat(cols[3].textContent);
+        let count = parseFloat(cols[4].textContent);
+        if (sumMap.has(name)) {
+            sumMap.set(name, sumMap.get(name) + sum);
+        } else {
+            sumMap.set(name, sum);
+        }
+        if (countMap.has(name)) {
+            countMap.set(name, countMap.get(name) + count);
+        } else {
+            countMap.set(name, count);
+        }
+
+        
+    }
+
+    // создаем новую таблицу и заполняем ее новыми данными
+    let newTable = document.getElementById('new-table');
+    newTable.innerHTML = '<caption>Общие сведения </caption><tr><th>Пользователь</th><th>ЦП %</th><th>Память %</th></tr>';
+    for (let [name, sum] of sumMap.entries()) {
+        let newRow = newTable.insertRow();
+        let nameCell = newRow.insertCell();
+        let sumCell = newRow.insertCell();
+        let countCell = newRow.insertCell();
+        nameCell.textContent = name;
+        sumCell.textContent = sum.toFixed(2);
+        countCell.textContent = countMap.get(name).toFixed(2);
+    }
+    let cells = newTable.querySelectorAll('td');
+        for (let i = 0; i < cells.length; i++) {
+            if (parseInt(cells[i].textContent) > 10) {
+                cells[i].style.backgroundColor = '#de6565';
+            }
+}}
+
+        </script>
+
+      
+
+
+</body>
+
+
+</html>
+
+{% endif %}

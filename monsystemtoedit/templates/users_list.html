@@ -1,0 +1,60 @@
+<style>
+    body {
+      margin: 20px;
+      padding: 20px;
+    }
+
+    .form-control.w-30 {
+    width: 20%;
+    margin-bottom: 10px;
+    }
+
+    table tr:hover {
+        margin: 5px;
+        background-color: rgba(168, 222, 249, 0.932); /* изменить цвет фона строки на серый при наведении на нее курсора */
+
+  
+}
+  </style>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Войдите в систему информация о мониторинге пользователя</title>
+    {#  Импортируйте стили CSS и динамику JS, которые Bootstrap помог нам настроить #}
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+{% include 'nav.html' %}
+
+<table class="table caption-top" id="pricelist">
+ 
+    <caption>Список агентов</caption>
+    <thead>
+    
+      <tr>
+        <th scope="col">Имя пользователья</th>
+        <th scope="col" >ID</th>
+
+
+
+      </tr>
+    </thead>
+    <tbody>
+        {% for el in user %}
+      <tr>
+        <td >{{ el.username }}</td>
+        <td >{{ el.id }}</td>
+
+      </tr>
+      {% endfor %}
+   
+    </tbody>
+  </table>
+
+  {% include 'footer.html' %}
+</body>
+</html>
